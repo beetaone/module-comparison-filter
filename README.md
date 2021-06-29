@@ -1,13 +1,13 @@
-# Python Processing Module Boilerplate
+# Filter
 
 
 |              |                                                            |
 | ------------ | ---------------------------------------------------------- |
-| name         | Python Processing Module Boilerplate                       |
+| name         | Filter                                                     |
 | version      | v0.0.1                                                     |
-| docker image | [weevenetwork/weeve-boilerplate](https://linktodockerhub/) |
+| docker image | [weevenetwork/weeve-filter](https://linktodockerhub/)      |
 | tags         | Python, Flask, Docker, Weeve                               |
-| authors      | Sanyam Arya                                                |
+| authors      | Jakub Grzelak                                              |
 
 ***
 ## Table of Content
@@ -31,7 +31,7 @@
 
 ## Description 
 
-This is the description for python boilerplate to write a processing module
+This module is responsible for filtering the data basing on an algebraic condition: <, >, <=, >=, ==, !=
 
 ### Features
 1. Flask ReST client
@@ -45,9 +45,9 @@ The following module configurations can be provided in a data service designer s
 | Name         | Environment Variables | type   | Description                                  |
 | ------------ | --------------------- | ------ | -------------------------------------------- |
 | Input Label  | INPUT_LABEL           | string | The input label on which anomaly is detected |
-| Input Unit   | INPUT_UNIT            | string | The input unit on which anomaly is detected  |
 | Output Label | OUTPUT_LABEL          | string | The output label as which data is dispatched |
 | Output Unit  | OUTPUT_UNIT           | string | The output unit in which data is dispatched  |
+| Condition    | CONDITION             | string | Condition for filtering data                 |
 
 ***
 
@@ -122,6 +122,8 @@ A module developer needs to add all the configuration and business logic.
         "INPUT_LABEL": env("INPUT_LABEL", "temperature"),
         "OUTPUT_LABEL": env("OUTPUT_LABEL", "temperature"),
         "OUTPUT_UNIT": env("OUTPUT_UNIT", "Celsius"),
+        "CONDITION": env("CONDITION", "<"),
+        "COMPARE_VALUE": floatenv("COMPARE_VALUE", 15)
     }
  ``` 
 
