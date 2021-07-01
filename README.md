@@ -56,12 +56,10 @@ Other features required for establishing the inter-container communication betwe
 
 ## Dependencies
 
-```js
-"dependencies": {
-    "Flask": "^1.1.1",
-    "requests": "^2.25.0",
-    "python-dotenv": "^0.18.0"
-}
+```txt
+Flask==1.1.1
+requests
+python-dotenv
 ```
 
 ## Output
