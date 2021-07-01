@@ -22,12 +22,16 @@
 
 ## Description
 
-This module is responsible for filtering the data basing on an algebraic condition: <, >, <=, >=, ==, !=
+This module is responsible for filtering the data based on an algebraic comparisons : <, >, <=, >=, ==, !=
 
 ## Features
 
-* Flask ReST client
-* Request - sends HTTP Request to the next module
+* Equal to
+* Not Equal to
+* Less Than
+* Greater Than
+* Less than or equal to
+* Greater than or equal to
 
 ## Environment Variables
 
