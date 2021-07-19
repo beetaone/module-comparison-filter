@@ -16,7 +16,9 @@
     - [Module Specific](#module-specific)
     - [Set by the weeve Agent on the edge-node](#set-by-the-weeve-agent-on-the-edge-node)
   - [Dependencies](#dependencies)
+  - [Input](#input)
   - [Output](#output)
+  - [Docker Compose Example](#docker-compose-example)
 
 
 
@@ -40,12 +42,13 @@ This module is responsible for filtering the data based on an algebraic comparis
 The following module configurations can be provided in a data service designer section on weeve platform:
 
 
-| Name         | Environment Variables | type   | Description                                  |
-| ------------ | --------------------- | ------ | -------------------------------------------- |
-| Input Label  | INPUT_LABEL           | string | The input label on which anomaly is detected |
-| Output Label | OUTPUT_LABEL          | string | The output label as which data is dispatched |
-| Output Unit  | OUTPUT_UNIT           | string | The output unit in which data is dispatched  |
-| Condition    | CONDITION             | string | Condition for filtering data                 |
+| Name          | Environment Variables | type   | Description                                  |
+| ------------- | --------------------- | ------ | -------------------------------------------- |
+| Input Label   | INPUT_LABEL           | string | The input label on which anomaly is detected |
+| Output Label  | OUTPUT_LABEL          | string | The output label as which data is dispatched |
+| Output Unit   | OUTPUT_UNIT           | string | The output unit in which data is dispatched  |
+| Condition     | CONDITION             | string | Condition for filtering data                 |
+| Compare Value | COMPARE_VALUE         | string | The value to compare with                    |
 
 Other features required for establishing the inter-container communication between modules in a data service are set by weeve agent.
 
@@ -66,6 +69,19 @@ requests
 python-dotenv
 ```
 
+## Input
+
+Input to this module is JSON body single object:
+
+Example of single object:
+
+```node
+{
+  temperature: 15,
+}
+```
+
+
 ## Output
 Output of this module is JSON body:
 
@@ -78,3 +94,23 @@ Output of this module is JSON body:
 ```
  
 * Here `OUTPUT_LABEL` and `OUTPUT_UNIT` are specified at the module creation and `Processed data` is data processed by Module Main function.
+
+## Docker Compose Example
+
+```yml
+version: "3"
+services:
+  filter:
+    image: weevenetwork/weeve-filter
+    environment:
+      MODULE_NAME: filter
+      EGRESS_API_HOST: https://hookb.in/DrrdzwQwXgIdNNEwggLo
+      HANDLER_PORT: 80
+      INPUT_LABEL: "temperature"
+      OUTPUT_LABEL: "temp"
+      OUTPUT_UNIT: "Celsius"
+      CONDITION: "<="
+      COMPARE_VALUE: "15.4"
+    ports:
+      - 5000:80
+```
