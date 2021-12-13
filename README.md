@@ -4,7 +4,7 @@
 | -------------- | ----------------------------- |
 | Name           | Filter                        |
 | Version        | v0.0.2                        |
-| Dockerhub Link | weevenetwork/weeve-filter     |
+| Dockerhub Link | [weevenetwork/weeve-filter](https://hub.docker.com/r/weevenetwork/weeve-filter)     |
 | authors        | Jakub Grzelak                 |
 
 
@@ -95,7 +95,7 @@ Output of this module is JSON body:
 ```node
 {
     "<OUTPUT_LABEL>": <Processed data>,
-    "output_unit": <OUTPUT_UNIT>,
+    "unit": <OUTPUT_UNIT>,
     "<MODULE_NAME>Time": timestamp
 }
 ```
