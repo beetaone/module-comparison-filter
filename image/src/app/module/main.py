@@ -7,6 +7,10 @@ from app.config import APPLICATION
 #  Set module settings
 __CONDITION__ = APPLICATION['CONDITION']
 __COMPARE_VALUE__ = APPLICATION['COMPARE_VALUE']
+__INPUT_LABEL__ = APPLICATION['INPUT_LABEL']
+
+def no_condition(a, b):
+    return True
 
 def equal(a, b):
     return a == b
@@ -27,12 +31,13 @@ def less_equal(a, b):
     return a <= b
 
 comparison_conditions = {
-    "==": equal,
-    "!=": not_equal,
-    ">": greater,
-    ">=": greater_equal,
-    "<": less,
-    "<=": less_equal
+    "No condition": no_condition,
+    "(==) equal to": equal,
+    "(!=) not equal to": not_equal,
+    "(>) greater than": greater,
+    "(>=) greater than or equal to": greater_equal,
+    "(<) less than": less,
+    "(<=) less than or equal to": less_equal
 }
 
 def module_main(parsed_data):
@@ -45,8 +50,8 @@ def module_main(parsed_data):
         [string, string]: [data, error]
     """
     try:
-        if comparison_conditions[__CONDITION__](parsed_data, __COMPARE_VALUE__):
-            return parsed_data, None
+        if comparison_conditions[__CONDITION__](parsed_data[__INPUT_LABEL__], __COMPARE_VALUE__):
+            return parsed_data[__INPUT_LABEL__], None
         else: return None, None
     except Exception:
         return None, "Unable to perform the module logic"
