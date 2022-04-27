@@ -1,7 +1,7 @@
 version: 1.0.0
-name: Filter
+name: Comparison Filter
 description: Filtering data according to query
-icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_filter_process.png
+icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_comparison_filter_process.png
 type: process
 tags:
   - Filter
@@ -14,7 +14,7 @@ categories:
   - id: category
     name: Filter
 image:
-  name: weevenetwork/weeve-filter
+  name: weevenetwork/comparison-filter
   tag: latest
 environments:
   - key: INPUT_LABEL

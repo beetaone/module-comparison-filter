@@ -1,11 +1,11 @@
 version: "3"
 services:
-  filter:
+  comparison-filter:
     build:
       context: ./image
       dockerfile: Dockerfile
     environment:
-      MODULE_NAME: filter
+      MODULE_NAME: comparison-filter
       MODULE_TYPE: PROCESS
       EGRESS_URL: https://hookb.in/7ZZoWDREjNfa99D3yREY
       HANDLER_PORT: 80
