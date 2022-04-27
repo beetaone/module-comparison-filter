@@ -1,15 +1,15 @@
-# Filter
+# Comparison Filter
 
 |                |                               |
 | -------------- | ----------------------------- |
-| Name           | Filter                        |
+| Name           | Comparison Filter                        |
 | Version        | v0.0.2                        |
-| Dockerhub Link | [weevenetwork/weeve-filter](https://hub.docker.com/r/weevenetwork/weeve-filter)     |
+| Dockerhub Link | [weevenetwork/comparison-filter](https://hub.docker.com/r/weevenetwork/comparison-filter)     |
 | authors        | Jakub Grzelak                 |
 
 
 
-- [Filter](#filter)
+- [Comparison Filter](#comparison-filter)
   - [Description](#description)
   - [Features](#features)
   - [Environment Variables](#environment-variables)
@@ -71,7 +71,7 @@ Other features required for establishing the inter-container communication betwe
 ## Dependencies
 
 ```txt
-Flask==1.1.1
+Flask==2.0.3
 requests
 python-dotenv
 ```
@@ -107,12 +107,12 @@ Output of this module is JSON body:
 ```yml
 version: "3"
 services:
-  filter:
-    image: weevenetwork/weeve-filter
+  comparison-filter:
+    image: weevenetwork/comparison-filter
     environment:
       MODULE_NAME: filter
       MODULE_TYPE: PROCESS
-      EGRESS_URL: https://hookb.in/DrrdzwQwXgIdNNEwggLo
+      EGRESS_URL: https://hookb.in/example
       INGRESS_PORT: 80
       INPUT_LABEL: "temperature"
       OUTPUT_LABEL: "temp"
