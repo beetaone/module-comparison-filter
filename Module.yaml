@@ -12,7 +12,7 @@ image:
   homepage: 'https://hub.docker.com/weevenetwork/comparison-filter'      # Image homepage from the docker registry.
 repository: 'https://github.com/weevennetwork/comparison-filter'     # Repository URL to source code.
 envs:                                   # Array of environment variables that will be used to configure the module. Also used to show related fields on the UI.
-  - name: Input label                   # name of the field to be displayed on the UI.
+  - name: Input Label                   # name of the field to be displayed on the UI.
     key: INPUT_LABEL                # key to set in the environment variables.
     description: The field to apply filter on     # Description/helper text for the field.
     value: 'temperature'                         # Value to be set in the environment variables.
@@ -36,7 +36,7 @@ envs:                                   # Array of environment variables that wi
     dependencies:                     # List of dependencies for the field. This field is only displayed if all the dependencies are met. If
       - key:                          # key of the dependency
         value:                        # value of the dependency
-  - name: Compare value
+  - name: Compare Value
     key: COMPARE_VALUE
     description: The value to compare with
     value: '20'
