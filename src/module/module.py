@@ -4,7 +4,7 @@ Data processing should happen here.
 
 Edit this file to implement your module.
 """
-from params import PARAM
+from .params import PARAMS
 from logging import getLogger
 
 log = getLogger("module")
@@ -57,9 +57,10 @@ def module_main(received_data: any) -> [any, str]:
     log.debug("Processing ...")
 
     try:
-        if comparison_conditions[PARAM['CONDITION']](received_data[PARAM['INPUT_LABEL']], PARAM['COMPARE_VALUE']):
+        if comparison_conditions[PARAMS['CONDITION']](received_data[PARAMS['INPUT_LABEL']], PARAMS['COMPARE_VALUE']):
             return received_data, None
-        else: return None, None
+        else:
+            return None, "Data does not match condition"
 
     except Exception as e:
         return None, f"Exception in the module business logic: {e}"
