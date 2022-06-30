@@ -14,7 +14,7 @@ repository: 'https://github.com/weevennetwork/comparison-filter'     # Repositor
 envs:                                   # Array of environment variables that will be used to configure the module. Also used to show related fields on the UI.
   - name: Input label                   # name of the field to be displayed on the UI.
     key: INPUT_LABEL                # key to set in the environment variables.
-    description: Input label     # Description/helper text for the field.
+    description: The field to apply filter on     # Description/helper text for the field.
     value: 'temperature'                         # Value to be set in the environment variables.
     type: 'text'                    # Type of the field. Possible values are: ['text', 'select', 'boolean', 'date', 'time', 'dateTime-local', 'number', 'multiple', 'CSV', 'file']
     dependencies:                     # List of dependencies for the field. This field is only displayed if all the dependencies are met. If
