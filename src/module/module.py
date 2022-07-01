@@ -60,7 +60,7 @@ def module_main(received_data: any) -> [any, str]:
         if comparison_conditions[PARAMS['CONDITION']](received_data[PARAMS['INPUT_LABEL']], PARAMS['COMPARE_VALUE']):
             return received_data, None
         else:
-            return None, "Data does not match condition"
+            return None, None
 
     except Exception as e:
         return None, f"Exception in the module business logic: {e}"

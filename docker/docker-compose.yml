@@ -10,5 +10,8 @@ services:
       INGRESS_HOST: "0.0.0.0"
       INGRESS_PORT: "80"
       EGRESS_URLS: "https://testdockercompose.free.beeceptor.com"
+      INPUT_LABEL: "temperature"
+      CONDITION: "(>) greater than"
+      COMPARE_VALUE: 20
     ports:
       - 80:80
