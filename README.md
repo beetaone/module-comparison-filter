@@ -1,80 +1,62 @@
 # Comparison Filter
 
-|                |                               |
-| -------------- | ----------------------------- |
-| Name           | Comparison Filter                        |
-| Version        | v0.0.2                        |
-| Dockerhub Link | [weevenetwork/comparison-filter](https://hub.docker.com/r/weevenetwork/comparison-filter)     |
-| authors        | Jakub Grzelak                 |
+|              |                                                                  |
+| ------------ | ---------------------------------------------------------------- |
+| name         | Comparison Filter                                                |
+| version      | v2.0.0                                                           |
+| GitHub       | [comparison-filter](https://github.com/weeve-modules/comparison-filter) |
+| DockerHub    | [weevenetwork/comparison-filter](https://hub.docker.com/r/weevenetwork/comparison-filter)     |
+| authors      | Jakub Grzelak, Paul Gaiduk                                       |
 
-
+***
+## Table of Content
 
 - [Comparison Filter](#comparison-filter)
+  - [Table of Content](#table-of-content)
   - [Description](#description)
-  - [Features](#features)
-  - [Environment Variables](#environment-variables)
-    - [Module Specific](#module-specific)
-    - [Set by the weeve Agent on the edge-node](#set-by-the-weeve-agent-on-the-edge-node)
+  - [Module Variables](#module-variables)
+  - [Module Testing](#module-testing)
   - [Dependencies](#dependencies)
   - [Input](#input)
   - [Output](#output)
-  - [Docker Compose Example](#docker-compose-example)
-
-
+***
 
 ## Description
 
-This module is responsible for filtering the data based on an algebraic comparisons : <, >, <=, >=, ==, !=
+This module is responsible for filtering the data based on an algebraic comparisons : <, >, <=, >=, ==, !=.
 
-## Features
-
-* Equal to
-* Not Equal to
-* Less Than
-* Greater Than
-* Less than or equal to
-* Greater than or equal to
-
-## Environment Variables
-
-### Module Specific
+## Module Variables
 
 The following module configurations can be provided in a data service designer section on weeve platform:
 
+| Environment Variables | type   | Description                                       |
+| --------------------- | ------ | ------------------------------------------------- |
+| INPUT_LABEL           | string | The input label on which anomaly is detected |
+| CONDITION             | string | Condition for filtering data                 |
+| COMPARE_VALUE         | string | The value to compare with                    |
+| MODULE_NAME           | string | Name of the module                                |
+| MODULE_TYPE           | string | Type of the module (Input, Processing, Output)    |
+| LOG_LEVEL             | string | Allowed log levels: DEBUG, INFO, WARNING, ERROR, CRITICAL. Refer to `logging` package documentation. |
+| INGRESS_HOST          | string | Host to which data will be received               |
+| INGRESS_PORT          | string | Port to which data will be received               |
+| EGRESS_URLS           | string | HTTP ReST endpoint for the next module            |
 
-| Name          | Environment Variables | type   | Description                                  |
-| ------------- | --------------------- | ------ | -------------------------------------------- |
-| Input Label   | INPUT_LABEL           | string | The input label on which anomaly is detected |
-| Output Label  | OUTPUT_LABEL          | string | The output label as which data is dispatched |
-| Output Unit   | OUTPUT_UNIT           | string | The output unit in which data is dispatched  |
-| Condition     | CONDITION             | string | Condition for filtering data                 |
-| Compare Value | COMPARE_VALUE         | string | The value to compare with                    |
+## Module Testing
 
-Other features required for establishing the inter-container communication between modules in a data service are set by weeve agent.
-
-### Set by the weeve Agent on the edge-node
-
-| Environment Variables | type   | Description                                    |
-| --------------------- | ------ | ---------------------------------------------- |
-| MODULE_NAME           | string | Name of the module                             |
-| MODULE_TYPE           | string | Type of the module (INGRESS, PROCESS, EGRESS)  |
-| EGRESS_SCHEME         | string | URL Scheme                                     |
-| EGRESS_HOST           | string | URL target host                                |
-| EGRESS_PORT           | string | URL target port                                |
-| EGRESS_PATH           | string | URL target path                                |
-| EGRESS_URL            | string | HTTP ReST endpoint for the next module         |
-| INGRESS_HOST          | string | Host to which data will be received            |
-| INGRESS_PORT          | string | Port to which data will be received            |
-| INGRESS_PATH          | string | Path to which data will be received            |
-
+To test module navigate to `test` directory. In `test/assets` edit both .json file to provide input for the module and expected output. During a test, data received from the listeners are compared against expected output data. You can run tests with `make run_test`.
 
 ## Dependencies
 
-```txt
-Flask==2.0.3
-requests
-python-dotenv
-```
+The following are module dependencies:
+
+* bottle
+* requests
+
+The following are developer dependencies:
+
+* pytest
+* flake8
+* black
 
 ## Input
 
@@ -82,43 +64,18 @@ Input to this module is JSON body single object:
 
 Example of single object:
 
-```node
+```json
 {
-  temperature: 15,
+  temperature: 15
 }
 ```
 
 
 ## Output
-Output of this module is JSON body:
+Output of this module is JSON body the same as input data if chosen comparison condition is satisfied:
 
-```node
+```json
 {
-    "<OUTPUT_LABEL>": <Processed data>,
-    "unit": <OUTPUT_UNIT>,
-    "<MODULE_NAME>Time": timestamp
+  temperature: 15
 }
-```
- 
-* Here `OUTPUT_LABEL` and `OUTPUT_UNIT` are specified at the module creation and `Processed data` is data processed by Module Main function.
-
-## Docker Compose Example
-
-```yml
-version: "3"
-services:
-  comparison-filter:
-    image: weevenetwork/comparison-filter
-    environment:
-      MODULE_NAME: filter
-      MODULE_TYPE: PROCESS
-      EGRESS_URL: https://hookb.in/example
-      INGRESS_PORT: 80
-      INPUT_LABEL: "temperature"
-      OUTPUT_LABEL: "temp"
-      OUTPUT_UNIT: "Celsius"
-      CONDITION: "<="
-      COMPARE_VALUE: "15.4"
-    ports:
-      - 5000:80
 ```
