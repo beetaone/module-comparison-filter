@@ -3,7 +3,7 @@
 |              |                                                                  |
 | ------------ | ---------------------------------------------------------------- |
 | name         | Comparison Filter                                                |
-| version      | v2.0.0                                                           |
+| version      | v1.0.0                                                           |
 | GitHub       | [comparison-filter](https://github.com/weeve-modules/comparison-filter) |
 | DockerHub    | [weevenetwork/comparison-filter](https://hub.docker.com/r/weevenetwork/comparison-filter)     |
 | authors      | Jakub Grzelak, Paul Gaiduk                                       |
