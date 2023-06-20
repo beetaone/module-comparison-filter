@@ -1,5 +1,5 @@
-displayName: 'Comparison Filter'       # Display name for the module that will be displayed in the UI.
-moduleName: 'comparison-filter'        # Module name that will be used to reference the module, and uniquely identify the module and their versions.
+displayName: 'Comparison Filter (Data Typing)'       # Display name for the module that will be displayed in the UI.
+moduleName: 'comparison-filter-data-typing'        # Module name that will be used to reference the module, and uniquely identify the module and their versions.
 description: 'Filtering data according to query'       # Module description that will be displayed in the UI.
 versionName: 'v1.0.1'                    # Module version name that will be used to reference the module version, and uniquely identify the module version with a common name.
 isPublic: true                          # Boolean value that indicates if the module is Public or Private.
@@ -16,7 +16,7 @@ envs:                                   # Array of environment variables that wi
     key: INPUT_LABEL                # key to set in the environment variables.
     description: The field to apply filter on     # Description/helper text for the field.
     value: 'temperature'                         # Value to be set in the environment variables.
-    type: 'text'                    # Type of the field. Possible values are: ['text', 'select', 'boolean', 'date', 'time', 'dateTime-local', 'number', 'multiple', 'CSV', 'file']
+    type: 'input'                    # Type of the field. Possible values are: ['input', 'output', 'text', 'select', 'boolean', 'date', 'time', 'dateTime-local', 'number', 'multiple', 'CSV', 'file']
     options: []                        # Options for the field if it is a select or multiple select. An array of string options
     dependencies: []                    # List of dependencies for the field. This field is only displayed if all the dependencies are met. If
   - name: Condition                   # name of the field to be displayed on the UI.
