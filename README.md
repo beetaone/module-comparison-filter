@@ -4,8 +4,8 @@
 | ------------ | ---------------------------------------------------------------- |
 | name         | Comparison Filter                                                |
 | version      | v1.0.1                                                           |
-| GitHub       | [comparison-filter](https://github.com/weeve-modules/comparison-filter) |
-| DockerHub    | [weevenetwork/comparison-filter](https://hub.docker.com/r/weevenetwork/comparison-filter)     |
+| GitHub       | [comparison-filter](https://github.com/beetaone/module-comparison-filter) |
+| DockerHub    | [beetaone/comparison-filter](https://hub.docker.com/r/beetaone/comparison-filter)     |
 | authors      | Jakub Grzelak, Paul Gaiduk                                       |
 
 ***
@@ -27,7 +27,7 @@ This module is responsible for filtering the data based on an algebraic comparis
 
 ## Module Variables
 
-The following module configurations can be provided in a data service designer section on weeve platform:
+The following module configurations can be provided in a data service designer section on beetaone platform:
 
 | Environment Variables | type   | Description                                       |
 | --------------------- | ------ | ------------------------------------------------- |
@@ -78,4 +78,4 @@ Output of this module is JSON body the same as input data if chosen comparison c
 {
   temperature: 15
 }
-```
+``````
